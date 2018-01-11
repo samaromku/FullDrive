@@ -1,7 +1,8 @@
 package com.example.savchenko.fulldrive.network;
 
 
-import com.example.savchenko.fulldrive.entities.feedburner.Rss;
+
+import com.example.savchenko.fulldrive.entities.Rss;
 
 import io.reactivex.Observable;
 import retrofit2.http.GET;

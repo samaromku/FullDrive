@@ -11,10 +11,13 @@ import android.widget.TextView;
 import com.example.savchenko.fulldrive.R;
 import com.example.savchenko.fulldrive.base.BaseAdapter;
 import com.example.savchenko.fulldrive.base.BaseViewHolder;
-import com.example.savchenko.fulldrive.entities.lifehacker.Item;
+import com.example.savchenko.fulldrive.entities.Item;
 import com.example.savchenko.fulldrive.interfaces.OnItemClickListener;
 import com.example.savchenko.fulldrive.view.CircleTransform;
 import com.squareup.picasso.Picasso;
+
+import java.util.Collections;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -24,6 +27,12 @@ public class NewsAdapter extends BaseAdapter<Item> {
 
     public NewsAdapter(Context context) {
         this.context = context;
+    }
+
+    public void addNews(List<Item>items){
+        this.dataList.addAll(items);
+        Collections.sort(items, (item, t1) -> item.getDate().compareTo(t1.getDate()));
+        notifyDataSetChanged();
     }
 
     @Override

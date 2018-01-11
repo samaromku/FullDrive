@@ -1,4 +1,4 @@
-package com.example.savchenko.fulldrive.entities.feedburner;
+package com.example.savchenko.fulldrive.entities;
 
 import org.simpleframework.xml.Element;
 import org.simpleframework.xml.Root;
@@ -8,7 +8,6 @@ import java.util.Date;
 /**
  * Created by savchenko on 11.01.18.
  */
-
 @Root(name = "item", strict = false)
 public class Item {
 
@@ -144,5 +143,44 @@ public class Item {
                 ", pubDate='" + pubDate + '\'' +
                 ", source='" + source + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Item item = (Item) o;
+
+        if (title != null ? !title.equals(item.title) : item.title != null) return false;
+        if (link != null ? !link.equals(item.link) : item.link != null) return false;
+        if (description != null ? !description.equals(item.description) : item.description != null)
+            return false;
+        if (author != null ? !author.equals(item.author) : item.author != null) return false;
+        if (enclosure != null ? !enclosure.equals(item.enclosure) : item.enclosure != null)
+            return false;
+        if (guid != null ? !guid.equals(item.guid) : item.guid != null) return false;
+        if (pubDate != null ? !pubDate.equals(item.pubDate) : item.pubDate != null) return false;
+        if (source != null ? !source.equals(item.source) : item.source != null) return false;
+        if (imageUrl != null ? !imageUrl.equals(item.imageUrl) : item.imageUrl != null)
+            return false;
+        if (text != null ? !text.equals(item.text) : item.text != null) return false;
+        return date != null ? date.equals(item.date) : item.date == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = title != null ? title.hashCode() : 0;
+        result = 31 * result + (link != null ? link.hashCode() : 0);
+        result = 31 * result + (description != null ? description.hashCode() : 0);
+        result = 31 * result + (author != null ? author.hashCode() : 0);
+        result = 31 * result + (enclosure != null ? enclosure.hashCode() : 0);
+        result = 31 * result + (guid != null ? guid.hashCode() : 0);
+        result = 31 * result + (pubDate != null ? pubDate.hashCode() : 0);
+        result = 31 * result + (source != null ? source.hashCode() : 0);
+        result = 31 * result + (imageUrl != null ? imageUrl.hashCode() : 0);
+        result = 31 * result + (text != null ? text.hashCode() : 0);
+        result = 31 * result + (date != null ? date.hashCode() : 0);
+        return result;
     }
 }

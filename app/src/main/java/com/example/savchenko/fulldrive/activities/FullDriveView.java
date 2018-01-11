@@ -1,6 +1,6 @@
 package com.example.savchenko.fulldrive.activities;
 
-import com.example.savchenko.fulldrive.entities.lifehacker.Item;
+import com.example.savchenko.fulldrive.entities.Item;
 
 import java.util.List;
 

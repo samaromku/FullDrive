@@ -26,8 +26,6 @@ public class FullDrivePresenter {
         interActor.getNewsFeed()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(list -> {
-                    Log.i(TAG, "getFeedNews: " + list);
-                }, Throwable::printStackTrace);
+                .subscribe(list -> view.setListToAdapter(list), Throwable::printStackTrace);
     }
 }

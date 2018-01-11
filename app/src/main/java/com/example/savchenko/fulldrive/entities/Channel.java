@@ -1,4 +1,4 @@
-package com.example.savchenko.fulldrive.entities.lifehacker;
+package com.example.savchenko.fulldrive.entities;
 
 import org.simpleframework.xml.Attribute;
 import org.simpleframework.xml.Element;

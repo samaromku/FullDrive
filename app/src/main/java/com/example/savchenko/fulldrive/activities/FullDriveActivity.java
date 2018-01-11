@@ -13,8 +13,9 @@ import com.example.savchenko.fulldrive.R;
 import com.example.savchenko.fulldrive.activities.adapter.NewsAdapter;
 import com.example.savchenko.fulldrive.activities.di.FullDriveComponent;
 import com.example.savchenko.fulldrive.activities.di.FullDriveModule;
-import com.example.savchenko.fulldrive.entities.lifehacker.Item;
+import com.example.savchenko.fulldrive.entities.Item;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -26,6 +27,7 @@ public class FullDriveActivity extends AppCompatActivity implements FullDriveVie
     private static final String TAG = FullDriveActivity.class.getSimpleName();
     @Inject
     FullDrivePresenter presenter;
+    private NewsAdapter adapter;
 
     @BindView(R.id.rvNews)
     RecyclerView rvNews;
@@ -37,6 +39,11 @@ public class FullDriveActivity extends AppCompatActivity implements FullDriveVie
         ((FullDriveComponent) App.getComponentManager()
                 .getPresenterComponent(getClass(), new FullDriveModule(this))).inject(this);
         ButterKnife.bind(this);
+        adapter = new NewsAdapter(this);
+        rvNews.setLayoutManager(new LinearLayoutManager(this));
+        rvNews.setAdapter(adapter);
+        adapter.setDataList(new ArrayList<>());
+
         presenter.getNews();
         presenter.getFeedNews();
     }
@@ -51,15 +58,12 @@ public class FullDriveActivity extends AppCompatActivity implements FullDriveVie
 
     @Override
     public void setListToAdapter(List<Item> listToAdapter) {
-        NewsAdapter adapter = new NewsAdapter(this);
-        adapter.setDataList(listToAdapter);
         adapter.setClickListener(position -> {
             String url = listToAdapter.get(position).getLink();
             Intent i = new Intent(Intent.ACTION_VIEW);
             i.setData(Uri.parse(url));
             startActivity(i);
         });
-        rvNews.setLayoutManager(new LinearLayoutManager(this));
-        rvNews.setAdapter(adapter);
+        adapter.addNews(listToAdapter);
     }
 }
